@@ -169,7 +169,7 @@ function activate(context) {
             const message = paths.length === 1
                 ? 'Path copied'
                 : `${paths.length} paths copied`;
-            vscode.window.showInformationMessage(message);
+            vscode.window.setStatusBarMessage(`✅ ${message}`, 2000);
         }),
         vscode.commands.registerCommand('focusFolder.copyRelativePath', (resource, selectedItems) => {
             // Use selectedItems if multi-select, otherwise single resource, fallback to treeView.selection for hotkey
@@ -200,7 +200,7 @@ function activate(context) {
             const message = paths.length === 1
                 ? 'Relative path copied'
                 : `${paths.length} relative paths copied`;
-            vscode.window.showInformationMessage(message);
+            vscode.window.setStatusBarMessage(`✅ ${message}`, 2000);
         }),
 
         // File operations

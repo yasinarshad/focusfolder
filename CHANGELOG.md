@@ -2,6 +2,13 @@
 
 All notable changes to the "Focus Folder" extension will be documented in this file.
 
+## [1.3.1] - 2026-01-17
+
+### Fixed
+- Changed notifications to status bar (auto-dismisses after 2 seconds)
+
+> **Dev note:** Changed `showInformationMessage` → `setStatusBarMessage` in extension.js:172,203. Keybinding uses `when: "focusedView == focusFolder"` to avoid conflict with copy-path-notify's broader `explorerViewletFocus`. User keybindings.json may override—check `~/Library/Application Support/Code/User/keybindings.json` if issues arise.
+
 ## [1.3.0] - 2025-01-17
 
 ### Added
