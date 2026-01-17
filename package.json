@@ -1,0 +1,152 @@
+{
+  "name": "focusfolder",
+  "displayName": "Focus Folder",
+  "description": "Focus explorer view on multiple folders",
+  "version": "1.3.0",
+  "publisher": "YasinArshad",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yasinarshad/focusfolder"
+  },
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "views": {
+      "explorer": [{
+        "id": "focusFolder",
+        "name": "FOCUSED",
+        "visibility": "visible",
+        "contextualTitle": "Focus Folder",
+        "icon": "$(target)"
+      }]
+    },
+    "viewsWelcome": [{
+      "view": "focusFolder",
+      "contents": "No folders focused.\nRight-click any folder and select \"Focus on Folder\"."
+    }],
+    "commands": [
+      {"command": "focusFolder.focusOnFolder", "title": "Focus on Folder", "category": "Focus Folder"},
+      {"command": "focusFolder.clearFocus", "title": "Clear All Focus", "icon": "$(close-all)", "category": "Focus Folder"},
+      {"command": "focusFolder.refresh", "title": "Refresh", "icon": "$(refresh)", "category": "Focus Folder"},
+      {"command": "focusFolder.sort", "title": "Sort Order", "icon": "$(list-ordered)", "category": "Focus Folder"},
+      {"command": "focusFolder.moveUp", "title": "Move Up", "category": "Focus Folder"},
+      {"command": "focusFolder.moveDown", "title": "Move Down", "category": "Focus Folder"},
+      {"command": "focusFolder.removeFocusedFolder", "title": "Remove from Focus", "icon": "$(close)", "category": "Focus Folder"},
+      {"command": "focusFolder.copyPath", "title": "Copy Path", "category": "Focus Folder"},
+      {"command": "focusFolder.copyRelativePath", "title": "Copy Relative Path", "category": "Focus Folder"},
+      {"command": "focusFolder.revealInSidebar", "title": "Reveal in Side Bar", "category": "Focus Folder"},
+      {"command": "focusFolder.revealInFinder", "title": "Reveal in Finder", "category": "Focus Folder"},
+      {"command": "focusFolder.createTemplatedFolder", "title": "Create New Templated Folder", "category": "Focus Folder"},
+      {"command": "focusFolder.newFile", "title": "New File...", "category": "Focus Folder"},
+      {"command": "focusFolder.newFolder", "title": "New Folder...", "category": "Focus Folder"},
+      {"command": "focusFolder.cut", "title": "Cut", "category": "Focus Folder"},
+      {"command": "focusFolder.copy", "title": "Copy", "category": "Focus Folder"},
+      {"command": "focusFolder.paste", "title": "Paste", "category": "Focus Folder"},
+      {"command": "focusFolder.rename", "title": "Rename...", "category": "Focus Folder"},
+      {"command": "focusFolder.delete", "title": "Move to Trash", "category": "Focus Folder"},
+      {"command": "focusFolder.moveToFolder", "title": "Move to Folder", "category": "Focus Folder"},
+      {"command": "focusFolder.fcApplyColor", "title": "Apply Color", "category": "Focus Folder"},
+      {"command": "focusFolder.fcApplyIcon", "title": "Apply Icon", "category": "Focus Folder"},
+      {"command": "focusFolder.fcReset", "title": "Reset", "category": "Focus Folder"},
+      {"command": "focusFolder.addToYasinFavorites", "title": "Add to Yasin Favorites", "category": "Focus Folder"}
+    ],
+    "keybindings": [
+      {"command": "focusFolder.copy", "key": "cmd+c", "mac": "cmd+c", "win": "ctrl+c", "linux": "ctrl+c", "when": "focusedView == focusFolder"},
+      {"command": "focusFolder.cut", "key": "cmd+x", "mac": "cmd+x", "win": "ctrl+x", "linux": "ctrl+x", "when": "focusedView == focusFolder"},
+      {"command": "focusFolder.paste", "key": "cmd+v", "mac": "cmd+v", "win": "ctrl+v", "linux": "ctrl+v", "when": "focusedView == focusFolder"},
+      {"command": "focusFolder.copyPath", "key": "shift+cmd+c", "mac": "shift+cmd+c", "win": "shift+ctrl+c", "linux": "shift+ctrl+c", "when": "focusedView == focusFolder"},
+      {"command": "focusFolder.rename", "key": "enter", "mac": "enter", "win": "f2", "linux": "f2", "when": "focusedView == focusFolder"},
+      {"command": "focusFolder.delete", "key": "cmd+backspace", "mac": "cmd+backspace", "win": "delete", "linux": "delete", "when": "focusedView == focusFolder"},
+      {"command": "focusFolder.revealInFinder", "key": "cmd+shift+r", "mac": "cmd+shift+r", "win": "ctrl+shift+r", "linux": "ctrl+shift+r", "when": "focusedView == focusFolder"},
+      {"command": "focusFolder.moveUp", "key": "alt+up", "mac": "alt+up", "win": "alt+up", "linux": "alt+up", "when": "focusedView == focusFolder"},
+      {"command": "focusFolder.moveDown", "key": "alt+down", "mac": "alt+down", "win": "alt+down", "linux": "alt+down", "when": "focusedView == focusFolder"}
+    ],
+    "submenus": [
+      {"id": "focusFolder.folderCustomization", "label": "Folder Customization"}
+    ],
+    "menus": {
+      "view/title": [
+        {"command": "focusFolder.refresh", "when": "view == focusFolder", "group": "navigation@1"},
+        {"command": "focusFolder.sort", "when": "view == focusFolder", "group": "navigation@2"},
+        {"command": "focusFolder.clearFocus", "when": "view == focusFolder", "group": "navigation@3"}
+      ],
+      "explorer/context": [
+        {"command": "focusFolder.focusOnFolder", "when": "explorerResourceIsFolder", "group": "2_workspace@99"}
+      ],
+      "view/item/context": [
+        {"command": "focusFolder.moveUp", "when": "view == focusFolder && viewItem == focusRoot", "group": "0_reorder@1"},
+        {"command": "focusFolder.moveDown", "when": "view == focusFolder && viewItem == focusRoot", "group": "0_reorder@2"},
+        {"command": "focusFolder.revealInSidebar", "when": "view == focusFolder && viewItem =~ /resource|focusRoot/", "group": "1_navigation@1"},
+        {"command": "focusFolder.revealInFinder", "when": "view == focusFolder && viewItem =~ /resource|focusRoot/", "group": "1_navigation@2"},
+        {"command": "focusFolder.createTemplatedFolder", "when": "view == focusFolder && viewItem =~ /resource\\.dir|focusRoot/", "group": "2_templated@1"},
+        {"command": "focusFolder.newFile", "when": "view == focusFolder && viewItem =~ /resource\\.dir|focusRoot/", "group": "3_workspace@1"},
+        {"command": "focusFolder.newFolder", "when": "view == focusFolder && viewItem =~ /resource\\.dir|focusRoot/", "group": "3_workspace@2"},
+        {"command": "focusFolder.cut", "when": "view == focusFolder && viewItem =~ /resource|focusRoot/", "group": "5_cutcopypaste@1"},
+        {"command": "focusFolder.copy", "when": "view == focusFolder && viewItem =~ /resource|focusRoot/", "group": "5_cutcopypaste@2"},
+        {"command": "focusFolder.paste", "when": "view == focusFolder && viewItem =~ /resource\\.dir|focusRoot/", "group": "5_cutcopypaste@3"},
+        {"command": "focusFolder.moveToFolder", "when": "view == focusFolder && viewItem =~ /resource|focusRoot/", "group": "5_cutcopypaste@4"},
+        {"command": "focusFolder.copyPath", "when": "view == focusFolder && viewItem =~ /resource|focusRoot/", "group": "6_copypath@1"},
+        {"command": "focusFolder.copyRelativePath", "when": "view == focusFolder && viewItem =~ /resource|focusRoot/", "group": "6_copypath@2"},
+        {"command": "focusFolder.rename", "when": "view == focusFolder && viewItem =~ /resource|focusRoot/", "group": "7_modification@1"},
+        {"command": "focusFolder.delete", "when": "view == focusFolder && viewItem =~ /resource|focusRoot/", "group": "7_modification@2"},
+        {"submenu": "focusFolder.folderCustomization", "when": "view == focusFolder && viewItem =~ /resource\\.dir|focusRoot/", "group": "8_foldercustom@1"},
+        {"command": "focusFolder.focusOnFolder", "when": "view == focusFolder && viewItem == resource.dir", "group": "9_focus@1"},
+        {"command": "focusFolder.removeFocusedFolder", "when": "view == focusFolder && viewItem == focusRoot", "group": "9_focus@1"},
+        {"command": "focusFolder.addToYasinFavorites", "when": "view == focusFolder && viewItem =~ /resource|focusRoot/", "group": "10_favorites@1"}
+      ],
+      "focusFolder.folderCustomization": [
+        {"command": "focusFolder.fcApplyColor", "group": "1_fc@1"},
+        {"command": "focusFolder.fcApplyIcon", "group": "1_fc@2"},
+        {"command": "focusFolder.fcReset", "group": "2_fc@1"}
+      ],
+      "inline": [
+        {"command": "focusFolder.removeFocusedFolder", "when": "view == focusFolder && viewItem == focusRoot", "group": "inline"}
+      ],
+      "commandPalette": [
+        {"command": "focusFolder.focusOnFolder", "when": "false"},
+        {"command": "focusFolder.copyPath", "when": "false"},
+        {"command": "focusFolder.copyRelativePath", "when": "false"},
+        {"command": "focusFolder.revealInSidebar", "when": "false"},
+        {"command": "focusFolder.revealInFinder", "when": "false"},
+        {"command": "focusFolder.createTemplatedFolder", "when": "false"},
+        {"command": "focusFolder.removeFocusedFolder", "when": "false"},
+        {"command": "focusFolder.newFile", "when": "false"},
+        {"command": "focusFolder.newFolder", "when": "false"},
+        {"command": "focusFolder.cut", "when": "false"},
+        {"command": "focusFolder.copy", "when": "false"},
+        {"command": "focusFolder.paste", "when": "false"},
+        {"command": "focusFolder.rename", "when": "false"},
+        {"command": "focusFolder.delete", "when": "false"},
+        {"command": "focusFolder.moveToFolder", "when": "false"},
+        {"command": "focusFolder.fcApplyColor", "when": "false"},
+        {"command": "focusFolder.fcApplyIcon", "when": "false"},
+        {"command": "focusFolder.fcReset", "when": "false"},
+        {"command": "focusFolder.addToYasinFavorites", "when": "false"},
+        {"command": "focusFolder.sort", "when": "false"},
+        {"command": "focusFolder.moveUp", "when": "false"},
+        {"command": "focusFolder.moveDown", "when": "false"}
+      ]
+    },
+    "configuration": {
+      "title": "Focus Folder",
+      "properties": {
+        "focusFolder.focusPaths": {
+          "type": "array",
+          "items": {"type": "string"},
+          "default": [],
+          "description": "List of focused folder paths"
+        },
+        "focusFolder.sortOrder": {
+          "type": "string",
+          "enum": ["ASC", "DESC", "MODIFIED", "MANUAL"],
+          "default": "MANUAL",
+          "description": "Sort order for focused folder contents: ASC (A-Z), DESC (Z-A), MODIFIED (newest first), or MANUAL (drag order)"
+        }
+      }
+    }
+  }
+}
