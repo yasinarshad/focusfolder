@@ -8,6 +8,11 @@
     "type": "git",
     "url": "https://github.com/yasinarshad/focusfolder"
   },
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#4ECDC4",
+    "theme": "dark"
+  },
   "engines": {
     "vscode": "^1.70.0"
   },
